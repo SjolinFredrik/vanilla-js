@@ -35,6 +35,12 @@ class Form extends App {
     mailInput.setAttribute('placeholder', 'Ange mail:')
     mailInput.setAttribute('id', 'email')
     inputDiv.append(mailInput)
+    // button to add more emails
+    let addEmail = document.createElement('button')
+    addEmail.setAttribute('class', 'add-more')
+    addEmail.setAttribute('id', 'add-more-email')
+    addEmail.innerHTML = '+'
+    inputDiv.append(addEmail)
 
     // input for telephone number
     let telephoneInput = document.createElement('input')
@@ -44,6 +50,12 @@ class Form extends App {
     telephoneInput.setAttribute('placeholder', 'Ange telefon nr:')
     telephoneInput.setAttribute('id', 'telephone')
     inputDiv.append(telephoneInput)
+    // button to add more telephone number
+    let addTelephoneNumber = document.createElement('button')
+    addTelephoneNumber.setAttribute('class', 'add-more')
+    addTelephoneNumber.setAttribute('id', 'add-telephone-number')
+    addTelephoneNumber.innerHTML = '+'
+    inputDiv.append(addTelephoneNumber)
 
     // Div for delete / add buttons
     let buttonDiv = document.createElement('div')
