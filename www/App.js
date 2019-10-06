@@ -11,6 +11,7 @@ class App {
       if (e.target.closest('#save-contact')) this.saveContact()
     })
   }
+  //
   saveContact() {
     let inputValues = document.querySelectorAll('input[type="text"]')
     const data = [].reduce.call(
@@ -23,7 +24,12 @@ class App {
     )
     this.saveContactToLocalStorage(data)
   }
+  // Save multiple contacts to localStorage
   saveContactToLocalStorage(data) {
+    // look after the key contacts if it excist
+    // if it finds it it will push in the new data to it
+    // if not, the catch will pick it up and create it
+    // so no error will occure
     try {
       const contacts = JSON.parse(localStorage.contacts)
       console.log(contacts)
