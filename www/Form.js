@@ -4,20 +4,16 @@ class Form extends App {
     this.addForm()
   }
   addForm() {
-    // Body element for the whole site
+    let div = document.createElement('div')
     let body = document.querySelector('body')
+    body.append(div)
+    // // Site Header
+    // let header = document.createElement('header')
+    // header.setAttribute('class', 'my-header')
+    // header.innerHTML = 'Phoney - phonebook'
+    // body.append(header)
 
-    // Site Header
-    let header = document.createElement('header')
-    header.innerHTML = 'Hello, I love Phoney!'
-    body.append(header)
-
-    // Div to hold input fields
-    let inputDiv = document.createElement('div')
-    inputDiv.setAttribute('class', 'input-holder')
-    body.append(inputDiv)
-
-    // Input to insert name
+    // Input for name
     let nameInput = document.createElement('input')
     nameInput.setAttribute('type', 'text')
     nameInput.setAttribute('class', 'add-name')
@@ -25,7 +21,7 @@ class Form extends App {
     nameInput.setAttribute('value', '')
     nameInput.setAttribute('placeholder', 'Ange namn:')
     nameInput.setAttribute('id', 'name')
-    inputDiv.append(nameInput)
+    div.append(nameInput)
 
     // Input for mail
     let mailInput = document.createElement('input')
@@ -34,13 +30,7 @@ class Form extends App {
     mailInput.setAttribute('value', '')
     mailInput.setAttribute('placeholder', 'Ange mail:')
     mailInput.setAttribute('id', 'email')
-    inputDiv.append(mailInput)
-    // button to add more emails
-    let addEmail = document.createElement('button')
-    addEmail.setAttribute('class', 'add-more')
-    addEmail.setAttribute('id', 'add-more-email')
-    addEmail.innerHTML = '+'
-    inputDiv.append(addEmail)
+    div.append(mailInput)
 
     // input for telephone number
     let telephoneInput = document.createElement('input')
@@ -49,30 +39,33 @@ class Form extends App {
     telephoneInput.setAttribute('value', '')
     telephoneInput.setAttribute('placeholder', 'Ange telefon nr:')
     telephoneInput.setAttribute('id', 'telephone')
-    inputDiv.append(telephoneInput)
+    div.append(telephoneInput)
+
+    // button to add more emails
+    let addEmail = document.createElement('button')
+    addEmail.setAttribute('class', 'add-more')
+    addEmail.setAttribute('id', 'add-more-email')
+    addEmail.innerHTML = '+'
+    div.append(addEmail)
+
     // button to add more telephone number
     let addTelephoneNumber = document.createElement('button')
     addTelephoneNumber.setAttribute('class', 'add-more')
     addTelephoneNumber.setAttribute('id', 'add-telephone-number')
     addTelephoneNumber.innerHTML = '+'
-    inputDiv.append(addTelephoneNumber)
-
-    // Div for delete / add buttons
-    let buttonDiv = document.createElement('div')
-    buttonDiv.setAttribute('class', 'button-holder')
-    body.append(buttonDiv)
+    div.append(addTelephoneNumber)
 
     // Button to save the contacts insertet valuse
     let submit = document.createElement('button')
     submit.setAttribute('class', 'saved-user')
     submit.setAttribute('id', 'save-contact')
     submit.innerHTML = 'Lägg till mig!'
-    buttonDiv.append(submit)
+    div.append(submit)
 
     // Button to remove contact from phonebook
     let deleteButton = document.createElement('button')
     deleteButton.setAttribute('class', 'remove-user')
     deleteButton.innerHTML = 'Radera mig!'
-    buttonDiv.append(deleteButton)
+    div.append(deleteButton)
   }
 }
