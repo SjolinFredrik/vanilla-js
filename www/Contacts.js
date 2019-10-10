@@ -5,6 +5,7 @@ class Contacts extends App {
   }
   addedContacts() {
     let tableDiv = document.createElement('div')
+    tableDiv.setAttribute('class', 'table-div')
     let body = document.querySelector('body')
     body.append(tableDiv)
 
