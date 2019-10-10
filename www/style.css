@@ -1,3 +1,31 @@
+.form-div {
+  margin: 0 auto;
+  max-width: 900px;
+  border: solid;
+  padding: 20px;
+}
+.table-div {
+  margin: 0 auto;
+  max-width: 900px;
+  border: solid;
+  margin-top: 40px;
+}
+.email-div {
+  margin: 0px;
+}
+input {
+  width: 100%;
+  padding: 5px;
+  margin-bottom: 10px;
+}
+.add-more {
+  margin-bottom: 10px;
+}
+
+/* .header-text {
+  display: flex;
+  justify-content: center;
+}
 .my-header {
   display: flex;
   justify-content: center;
@@ -6,11 +34,4 @@
   padding: 10px 0;
   border-radius: 10px;
   background-color: bisque;
-}
-input {
-  width: 100%;
-}
-.header-text {
-  display: flex;
-  justify-content: center;
-}
+} */
