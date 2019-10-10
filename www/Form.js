@@ -5,6 +5,7 @@ class Form extends App {
   }
   addForm() {
     let div = document.createElement('div')
+    div.setAttribute('class', 'form-div')
     let body = document.querySelector('body')
     body.append(div)
     // // Site Header
