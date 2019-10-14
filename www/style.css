@@ -9,9 +9,17 @@
   max-width: 900px;
   border: solid;
   margin-top: 40px;
+  padding: 20px;
+}
+table {
+  width: 100%;
+  text-align: left;
+}
+th {
+  width: 25%;
 }
 .email-div {
-  margin: 0px;
+  margin: 0 auto;
 }
 input {
   width: 100%;
