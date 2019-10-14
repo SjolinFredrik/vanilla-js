@@ -71,13 +71,5 @@ class Form extends App {
     submit.innerHTML = 'Lägg till mig!'
     buttonDiv.append(submit)
     div.append(buttonDiv)
-
-    // Button to remove contact from phonebook
-
-    let deleteButton = document.createElement('button')
-    deleteButton.setAttribute('class', 'remove-user')
-    deleteButton.innerHTML = 'Radera mig!'
-    buttonDiv.append(deleteButton)
-    div.append(buttonDiv)
   }
 }
