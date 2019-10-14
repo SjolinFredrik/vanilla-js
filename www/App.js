@@ -12,14 +12,28 @@ class App {
       if (e.target.closest('#save-contact')) this.saveContact()
       if (e.target.closest('#add-more-email')) this.addNewEmail()
       if (e.target.closest('#add-more-phone')) this.addNewPhone()
+      if (e.target.closest('.edit-contact'))
+        this.editContact(e.target.getAttribute('data'))
+      if (e.target.closest('.delete-contact'))
+        this.deleteContact(e.target.getAttribute('data'))
+      if (e.target.closest('.update-button'))
+        this.updateContact(e.target.getAttribute('data'))
     })
   }
-  //
+
   saveContact() {
     // let inputValues = document.querySelectorAll('input[type="text"]')
     let nameValue = document.querySelector('input#name').value
-    let phoneValue = document.querySelector('div.email-div').children
     let emailValue = document.querySelector('div.phone-div').children
+    let phoneValue = document.querySelector('div.email-div').children
+
+    let emailFilter = [].filter
+      .call(emailValue, html => {
+        return html.tagName === 'INPUT'
+      })
+      .map(input => {
+        return input.value
+      })
 
     let phoneFilter = [].filter
       .call(phoneValue, html => {
@@ -29,52 +43,59 @@ class App {
         return input.value
       })
 
-    let emailFilter = [].filter
-      .call(emailValue, html => {
-        return html.tagName === 'INPUT'
-      })
-      .map(input => {
-        return input.value
-      })
     console.log(nameValue)
-    console.log(phoneFilter)
     console.log(emailFilter)
+    console.log(phoneFilter)
 
     const data = {
       name: nameValue,
+      email: emailFilter,
       phone: phoneFilter,
-      email: emailFilter
+      id: Date.now()
     }
-    // const data = [].reduce.call(
-    //   inputValues,
-    //   (acc, cur) => {
-    //     acc[cur.id] = cur.value
-    //     return acc
-    //   },
-    //   {}
-    // )
-    contacts.push(data)
-    contacts.forEach((item, i) => {
-      item.id = i + 1
-    })
+
     console.log(data)
-    contacts.save(data)
+    contacts.push(data)
+    contacts.save()
     document.querySelector('div.form-div').outerHTML = ''
     this.form = new Form()
     document.querySelector('div.table-div').outerHTML = ''
     this.contacts = new Contacts()
   }
 
-  // Add new input for more phone numbers
-  addNewPhone() {
-    const newPhone = document.querySelector('div.phone-div')
-    const input = document.createElement('input')
-    newPhone.append(input)
+  // Edit a contacts number and email
+  editContact(data) {
+    document.querySelector('div.form-div').outerHTML = ''
+    document.querySelector('div.table-div').outerHTML = ''
+    this.contact = new Contact().addedContact(data)
   }
+
+  // Update excisting contact
+  updateContact() {
+    document.querySelector('div.form-div').outerHTML = ''
+    this.form = new Form()
+  }
+  // Delete excisting contact
+  deleteContact(id) {
+    console.log(id)
+    contacts.splice(contacts.findIndex(contact => contact.id === Number(id)), 1)
+    console.log(contacts)
+    contacts.save()
+    document.querySelector('div.table-div').outerHTML = ''
+    this.contacts = new Contacts()
+  }
+
   // Add new input for more emails
   addNewEmail() {
-    const newEmail = document.querySelector('div.email-div')
-    const input = document.createElement('input')
+    let newEmail = document.querySelector('div.email-div')
+    let input = document.createElement('input')
     newEmail.append(input)
+  }
+
+  // Add new input for more phone numbers
+  addNewPhone() {
+    let newPhone = document.querySelector('div.phone-div')
+    let input = document.createElement('input')
+    newPhone.append(input)
   }
 }
