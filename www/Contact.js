@@ -9,6 +9,7 @@ class Contact extends App {
       return contact.id === Number(id)
     })
     console.log(contact)
+
     // Re-create the form for each contact
     // let div = document.createElement('div')
     // div.setAttribute('class', 'form-div')

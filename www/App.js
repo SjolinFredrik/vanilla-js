@@ -9,19 +9,25 @@ class App {
 
   listen() {
     window.addEventListener('click', e => {
+      // Save new contact
       if (e.target.closest('#save-contact')) this.saveContact()
-
+      // Add more mail
       if (e.target.closest('#add-more-email')) this.addNewEmail()
-
+      // Add more phones
       if (e.target.closest('#add-more-phone')) this.addNewPhone()
+      // Button to save changes made to a single contact
+      if (e.target.closest('#update-contact'))
+        this.saveNewUpdates(e.target.getAttribute('data'))
 
-      // if (e.target.closest('#update-contact'))
+      //Button to edit a contact
       if (e.target.closest('.edit-contact'))
         this.editContact(e.target.getAttribute('data'))
 
+      // Button to delete a contact
       if (e.target.closest('.delete-contact'))
         this.deleteContact(e.target.getAttribute('data'))
 
+      // Button to create contact form so u can edit it
       if (e.target.closest('.update-button'))
         this.updateContact(e.target.getAttribute('data'))
     })
@@ -75,11 +81,6 @@ class App {
     document.querySelector('div.table-div').outerHTML = ''
     this.contact = new Contact().addedContact(data)
   }
-
-  // Update excisting contact
-  updateContact(data) {
-    this.contactForm = new ContactForm().updateForm(data)
-  }
   // Delete excisting contact
   deleteContact(id) {
     console.log(id)
@@ -104,5 +105,15 @@ class App {
     let input = document.createElement('input')
     input.setAttribute('placeholder', 'Ange telefon nr:')
     newPhone.append(input)
+  }
+
+  // Update excisting contact create new form
+  updateContact(data) {
+    this.contactForm = new ContactForm().updateForm(data)
+  }
+
+  // Save changes to you contact
+  saveNewUpdates() {
+    console.log('huasdoisa')
   }
 }
