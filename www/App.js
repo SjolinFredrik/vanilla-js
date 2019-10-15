@@ -10,19 +10,24 @@ class App {
   listen() {
     window.addEventListener('click', e => {
       if (e.target.closest('#save-contact')) this.saveContact()
+
       if (e.target.closest('#add-more-email')) this.addNewEmail()
+
       if (e.target.closest('#add-more-phone')) this.addNewPhone()
+
+      // if (e.target.closest('#update-contact'))
       if (e.target.closest('.edit-contact'))
         this.editContact(e.target.getAttribute('data'))
+
       if (e.target.closest('.delete-contact'))
         this.deleteContact(e.target.getAttribute('data'))
+
       if (e.target.closest('.update-button'))
         this.updateContact(e.target.getAttribute('data'))
     })
   }
 
   saveContact() {
-    // let inputValues = document.querySelectorAll('input[type="text"]')
     let nameValue = document.querySelector('input#name').value
     let emailValue = document.querySelector('div.phone-div').children
     let phoneValue = document.querySelector('div.email-div').children
@@ -51,7 +56,8 @@ class App {
       name: nameValue,
       email: emailFilter,
       phone: phoneFilter,
-      id: Date.now()
+      id: Date.now(),
+      history: []
     }
 
     console.log(data)
@@ -71,9 +77,8 @@ class App {
   }
 
   // Update excisting contact
-  updateContact() {
-    document.querySelector('div.form-div').outerHTML = ''
-    this.form = new Form()
+  updateContact(data) {
+    this.contactForm = new ContactForm().updateForm(data)
   }
   // Delete excisting contact
   deleteContact(id) {
@@ -89,6 +94,7 @@ class App {
   addNewEmail() {
     let newEmail = document.querySelector('div.email-div')
     let input = document.createElement('input')
+    input.setAttribute('placeholder', 'Ange mail:')
     newEmail.append(input)
   }
 
@@ -96,6 +102,7 @@ class App {
   addNewPhone() {
     let newPhone = document.querySelector('div.phone-div')
     let input = document.createElement('input')
+    input.setAttribute('placeholder', 'Ange telefon nr:')
     newPhone.append(input)
   }
 }

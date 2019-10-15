@@ -5,22 +5,20 @@ class Contact extends App {
 
   // get a specific id for each contact from contacts list
   addedContact(id) {
-    console.log(typeof id)
     let contact = contacts.find(contact => {
-      console.log(typeof contact.id)
       return contact.id === Number(id)
     })
     console.log(contact)
     // Re-create the form for each contact
-    let div = document.createElement('div')
-    div.setAttribute('class', 'form-div')
-    let body = document.querySelector('body')
-    body.append(div)
+    // let div = document.createElement('div')
+    // div.setAttribute('class', 'form-div')
+    // let body = document.querySelector('body')
+    // body.append(div)
 
     // The excisting contact information
     let tableDiv = document.createElement('div')
     tableDiv.setAttribute('class', 'table-div')
-    // let body = document.querySelector('body')
+    let body = document.querySelector('body')
     body.append(tableDiv)
 
     let table = document.createElement('table')
