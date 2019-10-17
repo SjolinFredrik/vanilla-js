@@ -19,8 +19,18 @@ class App {
       if (e.target.closest('#update-contact'))
         this.saveNewUpdates(e.target.getAttribute('data'))
 
-      //Button to edit a contact
+      // Button to edit a contact
       if (e.target.closest('.edit-contact'))
+        this.editContact(e.target.getAttribute('data'))
+
+      if (e.target.closest('.reset-button'))
+        this.resetContact(
+          e.target.getAttribute('data-id'),
+          e.target.getAttribute('data-index')
+        )
+
+      // button to cancel ongoing editation
+      if (e.target.closest('.cancel-edit'))
         this.editContact(e.target.getAttribute('data'))
 
       // Button to delete a contact
@@ -32,11 +42,25 @@ class App {
         this.updateContact(e.target.getAttribute('data'))
     })
   }
+  resetContact(id, index) {
+    let contact = contacts.find(contact => {
+      return contact.id === Number(id)
+    })
 
+    let resetPoint = contact.history.splice(index, 1)[0]
+    console.log(resetPoint)
+
+    contact.history.push(resetPoint)
+    contacts.save()
+
+    document.querySelector('div.contact').outerHTML = ''
+    document.querySelector('div.history').outerHTML = ''
+    this.contact = new Contact(id)
+  }
   saveContact() {
     let nameValue = document.querySelector('input#name').value
-    let emailValue = document.querySelector('div.phone-div').children
-    let phoneValue = document.querySelector('div.email-div').children
+    let emailValue = document.querySelector('div.email-div').children
+    let phoneValue = document.querySelector('div.phone-div').children
 
     let emailFilter = [].filter
       .call(emailValue, html => {
@@ -54,20 +78,18 @@ class App {
         return input.value
       })
 
-    console.log(nameValue)
-    console.log(emailFilter)
-    console.log(phoneFilter)
-
-    const data = {
-      name: nameValue,
-      email: emailFilter,
-      phone: phoneFilter,
+    const contact = {
       id: Date.now(),
-      history: []
+      history: [
+        {
+          name: nameValue,
+          email: emailFilter,
+          phone: phoneFilter
+        }
+      ]
     }
 
-    console.log(data)
-    contacts.push(data)
+    contacts.push(contact)
     contacts.save()
     document.querySelector('div.form-div').outerHTML = ''
     this.form = new Form()
@@ -76,16 +98,14 @@ class App {
   }
 
   // Edit a contacts number and email
-  editContact(data) {
+  editContact(id) {
     document.querySelector('div.form-div').outerHTML = ''
     document.querySelector('div.table-div').outerHTML = ''
-    this.contact = new Contact().addedContact(data)
+    this.contact = new Contact(id)
   }
   // Delete excisting contact
   deleteContact(id) {
-    console.log(id)
     contacts.splice(contacts.findIndex(contact => contact.id === Number(id)), 1)
-    console.log(contacts)
     contacts.save()
     document.querySelector('div.table-div').outerHTML = ''
     this.contacts = new Contacts()
@@ -109,11 +129,47 @@ class App {
 
   // Update excisting contact create new form
   updateContact(data) {
+    document.querySelector('div.history').outerHTML = ''
     this.contactForm = new ContactForm().updateForm(data)
   }
 
   // Save changes to you contact
-  saveNewUpdates() {
-    console.log('huasdoisa')
+  saveNewUpdates(id) {
+    let contact = contacts.find(contact => contact.id === Number(id))
+    console.log(contact)
+
+    let nameValue = document.querySelector('input#name').value
+    let emailValue = document.querySelector('div.email-div').children
+    let phoneValue = document.querySelector('div.phone-div').children
+
+    let emailFilter = [].filter
+      .call(emailValue, html => {
+        return html.tagName === 'INPUT'
+      })
+      .map(input => {
+        return input.value
+      })
+
+    let phoneFilter = [].filter
+      .call(phoneValue, html => {
+        return html.tagName === 'INPUT'
+      })
+      .map(input => {
+        return input.value
+      })
+
+    let newContact = {
+      name: nameValue,
+      email: emailFilter,
+      phone: phoneFilter
+    }
+    contact.history.push(newContact)
+    console.log(contact)
+    contacts.save()
+    // document.querySelector('div.form-div').outerHTML = ''
+    // document.querySelector('div.contact').outerHTML = ''
+
+    // this.contact = new Contact(id)
+    this.editContact(id)
   }
 }
