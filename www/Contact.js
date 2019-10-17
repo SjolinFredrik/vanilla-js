@@ -11,13 +11,18 @@ class Contact extends App {
       return contact.id === Number(this.id)
     })
     const latestVersion = [...contact.history].pop(-1)
-    console.log(contact)
 
     // The excisting contact information
     let tableDiv = document.createElement('div')
     tableDiv.setAttribute('class', 'table-div contact')
     let body = document.querySelector('body')
     body.append(tableDiv)
+
+    // Current showing contact header
+    let header = document.createElement('header')
+    header.setAttribute('class', 'header')
+    header.innerHTML = 'Din aktuella kontakt'
+    tableDiv.append(header)
 
     let table = document.createElement('table')
     let thead = document.createElement('thead')
@@ -49,7 +54,6 @@ class Contact extends App {
 
     let td = document.createElement('td')
     td.innerText = latestVersion.name
-    console.log(contact.history)
 
     let tdTwo = document.createElement('td')
     tdTwo.innerText = latestVersion.email.join('\n')
@@ -59,13 +63,19 @@ class Contact extends App {
 
     let updateButton = document.createElement('button')
     updateButton.setAttribute('class', 'update-button')
-    updateButton.setAttribute('data', contact.id)
+    updateButton.setAttribute('data', this.id)
     updateButton.innerText = 'Editera'
+
+    let goBackButton = document.createElement('button')
+    goBackButton.setAttribute('class', 'go-back')
+    goBackButton.setAttribute('data', this.id)
+    goBackButton.innerText = 'Gå tillbaka'
 
     tr2.append(td)
     tr2.append(tdTwo)
     tr2.append(tdThree)
     tr2.append(updateButton)
+    tr2.append(goBackButton)
     tbody.append(tr2)
     table.append(tbody)
   }
@@ -73,13 +83,18 @@ class Contact extends App {
     let contact = contacts.find(contact => {
       return contact.id === Number(this.id)
     })
-    console.log(contact)
 
     // The excisting contact information
     let tableDiv = document.createElement('div')
     tableDiv.setAttribute('class', 'table-div history')
     let body = document.querySelector('body')
     body.append(tableDiv)
+
+    // History over a contact
+    let header = document.createElement('header')
+    header.setAttribute('class', 'header')
+    header.innerHTML = 'Kontakt historia'
+    tableDiv.append(header)
 
     let table = document.createElement('table')
     let thead = document.createElement('thead')
@@ -125,7 +140,7 @@ class Contact extends App {
       resetButton.setAttribute('data-index', i)
       resetButton.setAttribute('data-id', this.id)
 
-      resetButton.innerText = 'Återställ'
+      resetButton.innerText = 'Välj till aktuell'
       tdFour.append(resetButton)
 
       tr2.append(td)

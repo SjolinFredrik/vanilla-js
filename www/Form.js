@@ -8,11 +8,12 @@ class Form extends App {
     div.setAttribute('class', 'form-div')
     let body = document.querySelector('body')
     body.append(div)
-    // // Site Header
-    // let header = document.createElement('header')
-    // header.setAttribute('class', 'my-header')
-    // header.innerHTML = 'Phoney - phonebook'
-    // body.append(header)
+
+    // Site Header
+    let header = document.createElement('header')
+    header.setAttribute('class', 'header')
+    header.innerHTML = 'Phoney kontaktbok'
+    div.append(header)
 
     // Input for name
     let nameInput = document.createElement('input')

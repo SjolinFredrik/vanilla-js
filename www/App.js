@@ -23,6 +23,7 @@ class App {
       if (e.target.closest('.edit-contact'))
         this.editContact(e.target.getAttribute('data'))
 
+      // Button to reset / change between different users
       if (e.target.closest('.reset-button'))
         this.resetContact(
           e.target.getAttribute('data-id'),
@@ -40,7 +41,18 @@ class App {
       // Button to create contact form so u can edit it
       if (e.target.closest('.update-button'))
         this.updateContact(e.target.getAttribute('data'))
+
+      // Go back to main page from contact page
+      if (e.target.closest('.go-back'))
+        this.takeMeBack(e.target.getAttribute('data'))
     })
+  }
+
+  takeMeBack() {
+    document.querySelector('div.contact').outerHTML = ''
+    document.querySelector('div.history').outerHTML = ''
+    this.form = new Form()
+    this.contacts = new Contacts()
   }
   resetContact(id, index) {
     let contact = contacts.find(contact => {
@@ -136,7 +148,7 @@ class App {
   // Save changes to you contact
   saveNewUpdates(id) {
     let contact = contacts.find(contact => contact.id === Number(id))
-    console.log(contact)
+    // console.log(contact)
 
     let nameValue = document.querySelector('input#name').value
     let emailValue = document.querySelector('div.email-div').children
@@ -164,12 +176,10 @@ class App {
       phone: phoneFilter
     }
     contact.history.push(newContact)
+    console.log(newContact)
     console.log(contact)
     contacts.save()
-    // document.querySelector('div.form-div').outerHTML = ''
-    // document.querySelector('div.contact').outerHTML = ''
 
-    // this.contact = new Contact(id)
     this.editContact(id)
   }
 }

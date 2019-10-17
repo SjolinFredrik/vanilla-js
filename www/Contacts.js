@@ -10,6 +10,12 @@ class Contacts extends App {
     let body = document.querySelector('body')
     body.append(tableDiv)
 
+    // Saved contacts header
+    let header = document.createElement('header')
+    header.setAttribute('class', 'header')
+    header.innerHTML = 'Sparade kontakter'
+    tableDiv.append(header)
+
     let table = document.createElement('table')
     let thead = document.createElement('thead')
     let tr = document.createElement('tr')
@@ -24,7 +30,7 @@ class Contacts extends App {
     thThree.innerText = 'Telefon'
 
     let thFour = document.createElement('th')
-    thFour.innerText = 'Editera'
+    thFour.innerText = ''
 
     tr.append(th)
     tr.append(thTwo)
@@ -38,20 +44,19 @@ class Contacts extends App {
       let tr = document.createElement('tr')
 
       let td = document.createElement('td')
-      td.innerText = contact.name
+      td.innerText = contact.history[0].name
 
       let tdTwo = document.createElement('td')
-      tdTwo.innerText = contact.email.join('\n')
+      tdTwo.innerText = contact.history[0].email.join('\n')
 
       let tdThree = document.createElement('td')
-      tdThree.innerText = contact.phone.join('\n')
+      tdThree.innerText = contact.history[0].phone.join('\n')
 
       let tdFour = document.createElement('td')
       let editButton = document.createElement('button')
       editButton.setAttribute('class', 'edit-contact')
       editButton.setAttribute('data', contact.id)
-      editButton.innerText = 'Editera'
-      thFour.innerText = 'Editera'
+      editButton.innerText = 'Visa'
 
       let tdFive = document.createElement('td')
       let deleteButton = document.createElement('button')
@@ -60,8 +65,8 @@ class Contacts extends App {
       deleteButton.innerText = 'Radera'
 
       tr.append(td)
-      tr.append(tdThree)
       tr.append(tdTwo)
+      tr.append(tdThree)
       tr.append(tdFour)
       tr.append(tdFive)
       tbody.append(tr)
