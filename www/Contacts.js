@@ -44,13 +44,13 @@ class Contacts extends App {
       let tr = document.createElement('tr')
 
       let td = document.createElement('td')
-      td.innerText = contact.history[0].name
+      td.innerText = contact.history[contact.pointer].name
 
       let tdTwo = document.createElement('td')
-      tdTwo.innerText = contact.history[0].email.join('\n')
+      tdTwo.innerText = contact.history[contact.pointer].email.join('\n')
 
       let tdThree = document.createElement('td')
-      tdThree.innerText = contact.history[0].phone.join('\n')
+      tdThree.innerText = contact.history[contact.pointer].phone.join('\n')
 
       let tdFour = document.createElement('td')
       let editButton = document.createElement('button')
@@ -71,7 +71,7 @@ class Contacts extends App {
       tr.append(tdFive)
       tbody.append(tr)
       tdFour.append(editButton)
-      tdFive.append(deleteButton)
+      tdFour.append(deleteButton)
     })
     table.append(tbody)
     tableDiv.append(table)
