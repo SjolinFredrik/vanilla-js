@@ -92,6 +92,7 @@ class App {
 
     const contact = {
       id: Date.now(),
+      pointer: 0,
       history: [
         {
           name: nameValue,
@@ -127,6 +128,7 @@ class App {
   addNewEmail() {
     let newEmail = document.querySelector('div.email-div')
     let input = document.createElement('input')
+    input.setAttribute('class', 'add-mail')
     input.setAttribute('placeholder', 'Ange mail:')
     newEmail.append(input)
   }
@@ -135,6 +137,7 @@ class App {
   addNewPhone() {
     let newPhone = document.querySelector('div.phone-div')
     let input = document.createElement('input')
+    input.setAttribute('class', 'add-number')
     input.setAttribute('placeholder', 'Ange telefon nr:')
     newPhone.append(input)
   }
@@ -148,8 +151,7 @@ class App {
   // Save changes to you contact
   saveNewUpdates(id) {
     let contact = contacts.find(contact => contact.id === Number(id))
-    // console.log(contact)
-
+    console.log(contact)
     let nameValue = document.querySelector('input#name').value
     let emailValue = document.querySelector('div.email-div').children
     let phoneValue = document.querySelector('div.phone-div').children
@@ -169,17 +171,19 @@ class App {
       .map(input => {
         return input.value
       })
-
-    let newContact = {
+    // Remove all elements after the pointer
+    contact.history.length = contact.pointer + 1
+    // Push new state to history
+    contact.history.push({
       name: nameValue,
-      email: emailFilter,
-      phone: phoneFilter
-    }
-    contact.history.push(newContact)
-    console.log(newContact)
-    console.log(contact)
+      phone: phoneFilter,
+      email: emailFilter
+    })
+    // Update the pointer
+    contact.pointer++
+    // save to local storage
     contacts.save()
-
+    // update screen
     this.editContact(id)
   }
 }
