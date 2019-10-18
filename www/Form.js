@@ -69,7 +69,7 @@ class Form extends App {
     let submit = document.createElement('button')
     submit.setAttribute('class', 'saved-user')
     submit.setAttribute('id', 'save-contact')
-    submit.innerHTML = 'Lägg till mig!'
+    submit.innerHTML = 'Spara kontakt'
     buttonDiv.append(submit)
     div.append(buttonDiv)
   }
