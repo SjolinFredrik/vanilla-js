@@ -28,55 +28,56 @@ class Contact extends App {
     let thead = document.createElement('thead')
     let tr = document.createElement('tr')
 
-    let th = document.createElement('th')
-    th.innerText = 'Namn'
+    let thName = document.createElement('th')
+    thName.setAttribute('class', 'th-style')
+    thName.innerText = 'Namn'
 
-    let thTwo = document.createElement('th')
-    thTwo.innerText = 'E-post'
+    let thEmail = document.createElement('th')
+    thEmail.setAttribute('class', 'th-style')
+    thEmail.innerText = 'E-post'
 
-    let thThree = document.createElement('th')
-    thThree.innerText = 'Telefon'
+    let thPhone = document.createElement('th')
+    thPhone.setAttribute('class', 'th-style')
+    thPhone.innerText = 'Telefon'
 
-    let thFour = document.createElement('th')
-    thFour.innerText = ''
-
-    tr.append(th)
-    tr.append(thTwo)
-    tr.append(thThree)
-    tr.append(thFour)
+    tr.append(thName)
+    tr.append(thEmail)
+    tr.append(thPhone)
     thead.append(tr)
     table.append(thead)
     tableDiv.append(table)
 
     let tbody = document.createElement('tbody')
 
-    let tr2 = document.createElement('tr')
+    let trData = document.createElement('tr')
 
-    let td = document.createElement('td')
-    td.innerText = latestVersion.name
+    let tdName = document.createElement('td')
+    tdName.innerText = latestVersion.name
 
-    let tdTwo = document.createElement('td')
-    tdTwo.innerText = latestVersion.email.join('\n')
+    let tdEmail = document.createElement('td')
+    tdEmail.innerText = latestVersion.email.join('\n')
 
-    let tdThree = document.createElement('td')
-    tdThree.innerText = latestVersion.phone.join('\n')
+    let tdPhone = document.createElement('td')
+    tdPhone.innerText = latestVersion.phone.join('\n')
 
+    let tdButtons = document.createElement('td')
     let updateButton = document.createElement('button')
-    updateButton.setAttribute('class', 'update-button')
+    updateButton.setAttribute('class', 'update-button button-style')
     updateButton.setAttribute('data', this.id)
     updateButton.innerText = 'Editera'
 
     let goBackButton = document.createElement('button')
-    goBackButton.setAttribute('class', 'go-back')
+    goBackButton.setAttribute('class', 'go-back button-style')
     goBackButton.setAttribute('data', this.id)
     goBackButton.innerText = 'Gå tillbaka'
 
-    tr2.append(td)
-    tr2.append(tdTwo)
-    tr2.append(tdThree)
-    tr2.append(updateButton)
-    tr2.append(goBackButton)
-    tbody.append(tr2)
+    trData.append(tdName)
+    trData.append(tdEmail)
+    trData.append(tdPhone)
+    trData.append(tdButtons)
+    tdButtons.append(updateButton)
+    tdButtons.append(goBackButton)
+    tbody.append(trData)
     table.append(tbody)
   }
   contactHistory() {
@@ -100,21 +101,21 @@ class Contact extends App {
     let thead = document.createElement('thead')
     let tr = document.createElement('tr')
 
-    let th = document.createElement('th')
-    th.innerText = 'Namn'
+    let thName = document.createElement('th')
+    thName.setAttribute('class', 'th-style')
+    thName.innerText = 'Namn'
 
-    let thTwo = document.createElement('th')
-    thTwo.innerText = 'E-post'
+    let thEmail = document.createElement('th')
+    thEmail.setAttribute('class', 'th-style')
+    thEmail.innerText = 'E-post'
 
-    let thThree = document.createElement('th')
-    thThree.innerText = 'Telefon'
+    let thPhone = document.createElement('th')
+    thPhone.setAttribute('class', 'th-style')
+    thPhone.innerText = 'Telefon'
 
-    let thFour = document.createElement('th')
-
-    tr.append(th)
-    tr.append(thTwo)
-    tr.append(thThree)
-    tr.append(thFour)
+    tr.append(thName)
+    tr.append(thEmail)
+    tr.append(thPhone)
 
     thead.append(tr)
     table.append(thead)
@@ -122,32 +123,31 @@ class Contact extends App {
 
     let tbody = document.createElement('tbody')
     contact.history.forEach((contactVersion, i) => {
-      let tr2 = document.createElement('tr')
+      let trData = document.createElement('tr')
 
-      let td = document.createElement('td')
-      td.innerText = contactVersion.name
+      let tdName = document.createElement('td')
+      tdName.innerText = contactVersion.name
 
-      let tdTwo = document.createElement('td')
-      tdTwo.innerText = contactVersion.email.join('\n')
+      let tdEmail = document.createElement('td')
+      tdEmail.innerText = contactVersion.email.join('\n')
 
-      let tdThree = document.createElement('td')
-      tdThree.innerText = contactVersion.phone.join('\n')
+      let tdPhone = document.createElement('td')
+      tdPhone.innerText = contactVersion.phone.join('\n')
 
-      let tdFour = document.createElement('td')
-
+      let tdButtons = document.createElement('td')
       let resetButton = document.createElement('button')
-      resetButton.setAttribute('class', 'reset-button')
+      resetButton.setAttribute('class', 'reset-button button-style')
       resetButton.setAttribute('data-index', i)
       resetButton.setAttribute('data-id', this.id)
 
       resetButton.innerText = 'Välj till aktuell'
-      tdFour.append(resetButton)
+      tdButtons.append(resetButton)
 
-      tr2.append(td)
-      tr2.append(tdTwo)
-      tr2.append(tdThree)
-      tr2.append(tdFour)
-      tbody.append(tr2)
+      trData.append(tdName)
+      trData.append(tdEmail)
+      trData.append(tdPhone)
+      trData.append(tdButtons)
+      tbody.append(trData)
     })
     table.append(tbody)
   }

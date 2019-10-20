@@ -13,29 +13,32 @@ class Contacts extends App {
     // Saved contacts header
     let header = document.createElement('header')
     header.setAttribute('class', 'header')
-    header.innerHTML = 'Sparade kontakter'
+    header.innerHTML = 'Aktuella kontakter'
     tableDiv.append(header)
 
     let table = document.createElement('table')
     let thead = document.createElement('thead')
     let tr = document.createElement('tr')
 
-    let th = document.createElement('th')
-    th.innerText = 'Namn'
+    let thName = document.createElement('th')
+    thName.setAttribute('class', 'th-style th-name')
+    thName.innerText = 'Namn'
 
-    let thTwo = document.createElement('th')
-    thTwo.innerText = 'E-post'
+    let thEmail = document.createElement('th')
+    thEmail.setAttribute('class', 'th-style th-email')
+    thEmail.innerText = 'E-post'
 
-    let thThree = document.createElement('th')
-    thThree.innerText = 'Telefon'
+    let thPhone = document.createElement('th')
+    thPhone.setAttribute('class', 'th-style th-phone')
+    thPhone.innerText = 'Telefon'
 
-    let thFour = document.createElement('th')
-    thFour.innerText = ''
+    let thButtons = document.createElement('th')
+    thButtons.setAttribute('class', 'th-buttons')
+    thButtons.innerText = ''
 
-    tr.append(th)
-    tr.append(thTwo)
-    tr.append(thThree)
-    tr.append(thFour)
+    tr.append(thName)
+    tr.append(thEmail)
+    tr.append(thPhone)
     thead.append(tr)
     table.append(thead)
 
@@ -43,35 +46,34 @@ class Contacts extends App {
     contacts.forEach(contact => {
       let tr = document.createElement('tr')
 
-      let td = document.createElement('td')
-      td.innerText = contact.history[contact.pointer].name
+      let tdName = document.createElement('td')
+      tdName.innerText = contact.history[contact.pointer].name
 
-      let tdTwo = document.createElement('td')
-      tdTwo.innerText = contact.history[contact.pointer].email.join('\n')
+      let tdEmail = document.createElement('td')
+      tdEmail.innerText = contact.history[contact.pointer].email.join('\n')
 
-      let tdThree = document.createElement('td')
-      tdThree.innerText = contact.history[contact.pointer].phone.join('\n')
+      let tdPhone = document.createElement('td')
+      tdPhone.innerText = contact.history[contact.pointer].phone.join('\n')
 
-      let tdFour = document.createElement('td')
+      let tdForButtons = document.createElement('td')
       let editButton = document.createElement('button')
-      editButton.setAttribute('class', 'edit-contact')
+      editButton.setAttribute('class', 'edit-contact button-style')
       editButton.setAttribute('data', contact.id)
       editButton.innerText = 'Visa'
 
-      let tdFive = document.createElement('td')
+      // let tdForButtons = document.createElement('td')
       let deleteButton = document.createElement('button')
-      deleteButton.setAttribute('class', 'delete-contact')
+      deleteButton.setAttribute('class', 'delete-contact button-style')
       deleteButton.setAttribute('data', contact.id)
       deleteButton.innerText = 'Radera'
 
-      tr.append(td)
-      tr.append(tdTwo)
-      tr.append(tdThree)
-      tr.append(tdFour)
-      tr.append(tdFive)
+      tr.append(tdName)
+      tr.append(tdEmail)
+      tr.append(tdPhone)
+      tr.append(tdForButtons)
       tbody.append(tr)
-      tdFour.append(editButton)
-      tdFour.append(deleteButton)
+      tdForButtons.append(editButton)
+      tdForButtons.append(deleteButton)
     })
     table.append(tbody)
     tableDiv.append(table)
